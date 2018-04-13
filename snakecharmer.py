@@ -43,6 +43,41 @@ notes = [
 1031
 ]
 
+def printFromFrequencies(freq1, freq2):
+    print(freq1, freq2)
+    noteError = 40
+
+    firstIndex = 0
+    secondIndex = 0
+
+    i = 0
+    j = 0
+
+    for note in notes:
+        if abs(freq1 - note) < noteError:
+            firstIndex = i
+            break
+        i += 1
+    else:
+        return
+
+    for note in notes:
+        if abs(freq2 - note) < noteError:
+            secondIndex = j
+            break
+        j += 1
+    else:
+        return
+
+    if firstIndex == secondIndex:
+        return
+
+    print(firstIndex, secondIndex)
+
+
+
+
+
 
 def main():
 
@@ -82,19 +117,20 @@ def main():
         absoluteDifference2 = abs(freq1 - avg)
 
         if std < 40:
+            frequencies = []
             if state == 0 and absoluteDifference1 > 0.05 * freq2:
-                frequencies = []
+
                 counter = 0
                 state = 1
                 freq1 = avg
                 #print("freq1", freq1, std)
             elif state == 1 and absoluteDifference2 > 0.05 * freq1:
-                frequencies = []
+
                 counter = 0
                 state = 2
                 freq2 = avg
                 #print("freq2")
-                print(freq1, freq2)
+                printFromFrequencies(freq1, freq2)
                 state = 0
             #print(absoluteDifference1, biggestAllowedDiff)
         elif counter > 181:
