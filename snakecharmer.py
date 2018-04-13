@@ -31,6 +31,17 @@ input = True,
 output = True,
 frames_per_buffer = chunk)
 
+notes = [
+1219,
+516,
+609,
+656,
+703,
+797,
+891,
+984,
+1031
+]
 
 
 def main():
