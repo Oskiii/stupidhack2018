@@ -57,6 +57,7 @@ def main():
         data = stream.read(chunk, exception_on_overflow = False)
         frequency=Pitch(data)
         frequencies.append(frequency)
+        #print(frequency)
         if len(frequencies) <= 10:
             continue
 
@@ -66,25 +67,29 @@ def main():
         std = np.std(frequencies)
         #print(avg, std)
 
-        absoluteDifference = abs(freq1 - avg)
-        biggestAllowedDiff = 0.05 * freq1
+        absoluteDifference1 = abs(freq2 - avg)
+        absoluteDifference2 = abs(freq1 - avg)
 
         if std < 40:
-            frequencies = []
-            if state == 0:
+            if state == 0 and absoluteDifference1 > 0.05 * freq2:
+                frequencies = []
+                counter = 0
                 state = 1
                 freq1 = avg
-                print("freq1", freq1, std)
-            elif state == 1 and absoluteDifference > biggestAllowedDiff:
+                #print("freq1", freq1, std)
+            elif state == 1 and absoluteDifference2 > 0.05 * freq1:
+                frequencies = []
+                counter = 0
                 state = 2
                 freq2 = avg
-                print("freq2")
+                #print("freq2")
                 print(freq1, freq2)
                 state = 0
-            print(absoluteDifference, biggestAllowedDiff)
-        elif counter > 30:
+            #print(absoluteDifference1, biggestAllowedDiff)
+        elif counter > 181:
             state = 0
             counter = 0
+            #print("RESET")
 
 
 
