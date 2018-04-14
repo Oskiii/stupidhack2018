@@ -32,6 +32,7 @@ CHANNELS = 1
 RATE = 48000
 RECORD_SECONDS = 0.2
 init = False
+stdLimit = 40
 
 currentFrequency = 0
 currentNote = ""
@@ -147,6 +148,7 @@ def main():
         global currentFrequency
         global currentNote
         global init
+        global stdLimit
 
         counter += 1
 
@@ -155,6 +157,7 @@ def main():
         frequencies.append(frequency)
         #print(frequency)
         if len(frequencies) <= 30:
+            stdLimit = np.std(frequencies)/2
             continue
 
         frequencies.pop(0)
