@@ -118,6 +118,8 @@ def printFromFrequencies(freq1, freq2):
     elif character == "Run":
         print("\n")
         exec(codeString)
+        if not "print" in codeString:
+            print(eval(codeString))
         codeString = ""
         time.sleep(10)
     else:
