@@ -24,6 +24,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 48000
 RECORD_SECONDS = 0.2
+init = False
 
 currentFrequency = 0
 currentNote = ""
@@ -124,8 +125,6 @@ def main():
 
     screen = curses.initscr()
 
-    print("\n snakecharmer.io  H A S   B E E N   I N I T I A T E D \n")
-    #os.system("say snakecharmer has been initiated")
 
     spinner = 0
 
@@ -140,6 +139,8 @@ def main():
     while True:
         global currentFrequency
         global currentNote
+        global init
+
         counter += 1
 
         data = stream.read(chunk, exception_on_overflow = False)
@@ -199,11 +200,17 @@ def main():
         #sys.stdout.flush()
 
         screen.clear()
-        screen.addstr(0, 0, "Freq\tStd")
-        screen.addstr(1,0,str(frequency) + "\t" + str(std))
-        screen.addstr(2, 0, currentNote)
-        screen.addstr(3, 0, codeString)
+
+        screen.addstr(0, 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
+        screen.addstr(1, 0, "Freq\tStd")
+        screen.addstr(2,0,str(frequency) + "\t" + str(std))
+        screen.addstr(3, 0, currentNote)
+        screen.addstr(4, 0, codeString)
         screen.refresh()
+
+        if not init:
+            os.system("say snakecharmer has been initiated")
+            init = True
 
 
 
