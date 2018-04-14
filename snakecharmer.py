@@ -92,22 +92,27 @@ def printFromFrequencies(freq1, freq2):
         return
 
     global codeString
-    character = str(alphabet[secondIndex][firstIndex])
+    character = ""
+    try:
+        character = str(alphabet[secondIndex][firstIndex])
+    except:
+        print("Error: ", str(firstIndex), str(secondIndex))
+        exit()
+
+
     if character == "Backspace" and len(codeString) > 0:
         codeString = codeString[:-1]
-    else if character == "Enter":
+    elif character == "Enter":
         character = "\n"
-    else if character == "Tab":
+    elif character == "Tab":
         character = "\t"
-    else if character == "Run"
+    elif character == "Run":
         print("\n")
         exec(codeString)
         codeString = ""
+        sleep(10)
     else:
         codeString += character
-
-
-
 
 
 
@@ -180,7 +185,7 @@ def main():
                 currentNote = ""
                 time.sleep(0.3)
             #print(absoluteDifference1, biggestAllowedDiff)
-        elif counter > 481:
+        elif counter > 181:
             state = 0
             counter = 0
             currentFrequency = ""
@@ -194,10 +199,12 @@ def main():
         #sys.stdout.flush()
 
         screen.clear()
-        screen.addstr(0, 0, currentNote)
-        screen.addstr(1, 0, codeString)
+        screen.addstr(0, 0, "Freq\tStd")
+        screen.addstr(1,0,str(frequency) + "\t" + str(std))
+        screen.addstr(2, 0, currentNote)
+        screen.addstr(3, 0, codeString)
         screen.refresh()
 
 
 
-wrapper(main)
+curses.wrapper(main())
