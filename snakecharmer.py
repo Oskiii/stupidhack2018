@@ -108,7 +108,7 @@ def printFromFrequencies(freq1, freq2):
         exit()
 
 
-    if character == "Backspace" and len(codeString) > 0:
+    if character == "Back" and len(codeString) > 0:
         codeString = codeString[:-1]
     elif character == "Enter":
         character = "\n"
@@ -166,7 +166,7 @@ def main():
         absoluteDifference1 = abs(freq2 - avg)
         absoluteDifference2 = abs(freq1 - avg)
 
-        if std < 40:
+        if std < 100:
 
             if state == 0:
                 frequencies = []
@@ -213,11 +213,24 @@ def main():
             screen.addstr(int(lineNum), 2, line)
             lineNum += 1
 
-        screen.addstr(int(lineNum+2), 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
-        screen.addstr(int(lineNum+4), 0, "Freq\tStd")
-        screen.addstr(int(lineNum+5),0,str(frequency) + "\t" + str(std))
-        screen.addstr(int(lineNum+6), 0, "Note: " + currentNote)
-        screen.addstr(int(lineNum+8), 0, codeString)
+        screen.addstr(int(lineNum+2), 0, "\tBlank\tC1\tD\tE\tF\tG\tA\tB\tC2", curses.A_STANDOUT)
+        screen.addstr(int(lineNum+3), 0, "Blank\t" + "\t".join(alphabet[0]))
+        screen.addstr(int(lineNum+4), 0, "C1\t" + "\t".join(alphabet[1]))
+        screen.addstr(int(lineNum+5), 0, "D\t" + "\t".join(alphabet[2]))
+        screen.addstr(int(lineNum+6), 0, "E\t" + "\t".join(alphabet[3]))
+        screen.addstr(int(lineNum+7), 0, "F\t" + "\t".join(alphabet[4]))
+        screen.addstr(int(lineNum+8), 0, "G\t" + "\t".join(alphabet[5]))
+        screen.addstr(int(lineNum+9), 0, "A\t" + "\t".join(alphabet[6]))
+        screen.addstr(int(lineNum+10), 0, "B\t" + "\t".join(alphabet[7]))
+        screen.addstr(int(lineNum+11), 0, "C2\t" + "\t".join(alphabet[8]))
+
+
+
+        screen.addstr(int(lineNum+13), 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
+        screen.addstr(int(lineNum+15), 0, "Freq\tStd")
+        screen.addstr(int(lineNum+16),0,str(frequency) + "\t" + str(std))
+        screen.addstr(int(lineNum+17), 0, "Note: " + currentNote)
+        screen.addstr(int(lineNum+18), 0, codeString)
         screen.refresh()
 
         if not init:
