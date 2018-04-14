@@ -60,11 +60,11 @@ notes = [
 1219,
 516,
 580,
-656,
+646,
 703,
 797,
 891,
-984,
+967,
 1031
 ]
 
@@ -118,7 +118,7 @@ def printFromFrequencies(freq1, freq2):
         print("\n")
         exec(codeString)
         codeString = ""
-        sleep(10)
+        time.sleep(10)
     else:
         codeString += character
 
@@ -170,7 +170,7 @@ def main():
 
             if state == 0:
                 frequencies = []
-                counter = 0
+                counter = -100
                 state = 1
                 freq1 = avg
                 if freq1 > 1300:
@@ -216,8 +216,8 @@ def main():
         screen.addstr(int(lineNum+2), 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
         screen.addstr(int(lineNum+4), 0, "Freq\tStd")
         screen.addstr(int(lineNum+5),0,str(frequency) + "\t" + str(std))
-        screen.addstr(int(lineNum+6), 0, currentNote)
-        screen.addstr(int(lineNum+7), 0, codeString)
+        screen.addstr(int(lineNum+6), 0, "Note: " + currentNote)
+        screen.addstr(int(lineNum+8), 0, codeString)
         screen.refresh()
 
         if not init:
