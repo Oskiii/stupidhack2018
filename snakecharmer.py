@@ -92,7 +92,19 @@ def printFromFrequencies(freq1, freq2):
         return
 
     global codeString
-    codeString += str(alphabet[secondIndex][firstIndex])
+    character = str(alphabet[secondIndex][firstIndex])
+    if character == "Backspace" and len(codeString) > 0:
+        codeString = codeString[:-1]
+    else if character == "Enter":
+        character = "\n"
+    else if character == "Tab":
+        character = "\t"
+    else if character == "Run"
+        print("\n")
+        exec(codeString)
+        codeString = ""
+    else:
+        codeString += character
 
 
 
@@ -106,8 +118,6 @@ def main():
     print ("\n Initializing... \n")
 
     screen = curses.initscr()
-    curses.noecho()
-    curses.cbreak()
 
     print("\n snakecharmer.io  H A S   B E E N   I N I T I A T E D \n")
     #os.system("say snakecharmer has been initiated")
@@ -182,7 +192,7 @@ def main():
         printString = currentNote + " " + codeString
         #sys.stdout.write( "\r " + printString)
         #sys.stdout.flush()
-        
+
         screen.clear()
         screen.addstr(0, 0, currentNote)
         screen.addstr(1, 0, codeString)
@@ -190,4 +200,4 @@ def main():
 
 
 
-main()
+wrapper(main)
