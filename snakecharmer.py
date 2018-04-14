@@ -14,6 +14,13 @@ scsv = open("alphabet.csv", "r").read()
 alphabetReader = csv.reader(scsv.split('\n'), delimiter=',')
 alphabet = []
 
+pythonLogo = open("pythonLogo.txt", "r").readlines()
+
+#for line in pythonLogo:
+#    print(line)
+
+#time.sleep(1)
+
 i = 0
 for row in alphabetReader:
     alphabet.append(row)
@@ -200,12 +207,17 @@ def main():
         #sys.stdout.flush()
 
         screen.clear()
+        lineNum = 0
 
-        screen.addstr(0, 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
-        screen.addstr(1, 0, "Freq\tStd")
-        screen.addstr(2,0,str(frequency) + "\t" + str(std))
-        screen.addstr(3, 0, currentNote)
-        screen.addstr(4, 0, codeString)
+        for line in pythonLogo:
+            screen.addstr(int(lineNum), 2, line)
+            lineNum += 1
+
+        screen.addstr(int(lineNum+2), 0, "snakecharmer.io  H A S   B E E N   I N I T I A T E D")
+        screen.addstr(int(lineNum+4), 0, "Freq\tStd")
+        screen.addstr(int(lineNum+5),0,str(frequency) + "\t" + str(std))
+        screen.addstr(int(lineNum+6), 0, currentNote)
+        screen.addstr(int(lineNum+7), 0, codeString)
         screen.refresh()
 
         if not init:
