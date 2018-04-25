@@ -214,9 +214,9 @@ def main():
         screen.clear()
         lineNum = 0
 
-        for line in pythonLogo:
-            screen.addstr(int(lineNum), 2, line)
-            lineNum += 1
+        #for line in pythonLogo:
+        #    screen.addstr(int(lineNum), 2, line)
+        #    lineNum += 1
 
         screen.addstr(int(lineNum+2), 0, "\tBlank\tC1\tD\tE\tF\tG\tA\tB\tC2", curses.A_STANDOUT)
         screen.addstr(int(lineNum+3), 0, "Blank\t" + "\t".join(alphabet[0]))
